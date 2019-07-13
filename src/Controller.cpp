@@ -2,6 +2,7 @@
 
 #include <string>
 
+#include <Algorithm/ParenthesisString.hpp>
 #include <Algorithm/ParenthesisString_ChaoticVersion.hpp>
 #include <Algorithm/IAlgorithm.hpp>
 #include <Common/Logger.hpp>
@@ -42,6 +43,7 @@ std::vector<std::shared_ptr<algo::IAlgorithm>> Controller::createAlgorithms()
 {
     return
         {
+            // std::make_unique<algo::ParenthesisString>(), // coooking...
             std::make_unique<algo::ParenthesisString_ChaoticVersion>(),
         };
 }
