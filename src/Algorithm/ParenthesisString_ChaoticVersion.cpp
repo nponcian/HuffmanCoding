@@ -1,8 +1,6 @@
 #include <Algorithm/ParenthesisString_ChaoticVersion.hpp>
 
-#include<iostream>
 #include<string.h>
-// #include<conio.h>
 
 #include <Common/Logger.hpp>
 
@@ -62,18 +60,18 @@ std::string ParenthesisString_ChaoticVersion::compress(const std::string& text)
         loop3++;
     }
     
-    cout<<"\nCharacter\t\tFrequency"; // display list not sorted
+    logger.printNoFormatting("\nCharacter\t\tFrequency"); // display list not sorted
     for(loop1=0; loop1<loop3; loop1++)
     {
         if(str2[loop1]==8) 
-            cout<<"\n(";
+            logger.printNoFormatting("\n(");
         else if(str2[loop1]==24)
-            cout<<"\n)";
+            logger.printNoFormatting("\n)");
         else if(str2[loop1]==27)
-            cout<<"\n`";
+            logger.printNoFormatting("\n`");
         else
-            cout<<"\n"<<str2[loop1];
-        cout<<"\t\t\t"<<len2[loop1];
+            logger.printNoFormatting("\n",str2[loop1]);
+        logger.printNoFormatting("\t\t\t",len2[loop1]);
     }
     
     // sort by increasing frequency
@@ -140,18 +138,18 @@ std::string ParenthesisString_ChaoticVersion::compress(const std::string& text)
         }   
     }
     
-    cout<<"\n\nCharacter\t\tFrequency"; // display list sorted
+    logger.printNoFormatting("\n\nCharacter\t\tFrequency"); // display list sorted
     for(loop1=0; loop1<loop3; loop1++)
     {
         if(str2[loop1]==8) 
-            cout<<"\n(";
+            logger.printNoFormatting("\n(");
         else if(str2[loop1]==24)
-            cout<<"\n)";
+            logger.printNoFormatting("\n)");
         else if(str2[loop1]==27)
-            cout<<"\n`";
+            logger.printNoFormatting("\n`");
         else
-            cout<<"\n"<<str2[loop1];
-        cout<<"\t\t\t"<<len2[loop1];
+            logger.printNoFormatting("\n",str2[loop1]);
+        logger.printNoFormatting("\t\t\t",len2[loop1]);
     }
    
     for(loop1=0; loop1<loop3; loop1++) // solve list sorted increasing frequency
@@ -191,22 +189,22 @@ std::string ParenthesisString_ChaoticVersion::compress(const std::string& text)
             }
         }
 
-        cout<<"\n\nCharacter\t\tFrequency"; //ididisplay na ung result after isort every step
+        logger.printNoFormatting("\n\nCharacter\t\tFrequency"); //ididisplay na ung result after isort every step
         for(loop1=0; loop1<loop3-1; loop1++)
         {
-            cout<<"\n";
+            logger.printNoFormatting("\n");
             for(loop2=0; (unsigned)loop2<strlen(str3[loop1]); loop2++)
             {
                 if(str3[loop1][loop2]==8) 
-                    cout<<"(";
+                    logger.printNoFormatting("(");
                 else if(str3[loop1][loop2]==24)
-                    cout<<")";
+                    logger.printNoFormatting(")");
                 else if(str3[loop1][loop2]==27)
-                    cout<<"`";
+                    logger.printNoFormatting("`");
                 else
-                    cout<<str3[loop1][loop2];
+                    logger.printNoFormatting(str3[loop1][loop2]);
             }
-            cout<<"\t\t\t"<<len2[loop1];
+            logger.printNoFormatting("\t\t\t",len2[loop1]);
         }
     }
 
@@ -277,31 +275,31 @@ std::string ParenthesisString_ChaoticVersion::compress(const std::string& text)
         strcpy(str3[0],tempstr2);
     }
     
-    cout<<"\n\nCharacter\t\tCode";
+    logger.printNoFormatting("\n\nCharacter\t\tCode");
     for(loop1=0; (unsigned)loop1<strlen(str3[0]); loop1++)
     {
         if(str3[0][loop1]=='(' || str3[0][loop1]==')' || str3[0][loop1]=='`')
             continue;
         if(str3[0][loop1]==8) 
-            cout<<"\n(\t\t\t";
+            logger.printNoFormatting("\n(\t\t\t");
         else if(str3[0][loop1]==24)
-            cout<<"\n)\t\t\t";
+            logger.printNoFormatting("\n)\t\t\t");
         else if(str3[0][loop1]==27)
-            cout<<"\n`\t\t\t";
+            logger.printNoFormatting("\n`\t\t\t");
         else
-            cout<<"\n"<<str3[0][loop1]<<"\t\t\t";
+            logger.printNoFormatting("\n",str3[0][loop1],"\t\t\t");
         for(loop2=strlen(code[loop1])-1; loop2>=0; loop2--)
-            cout<<code[loop1][loop2];
+            logger.printNoFormatting(code[loop1][loop2]);
     }
     
-    cout<<"\n\n\n\nProgram by PONci\n";
-    cout<<"|------    ---------     |\\      |\n";
-    cout<<"|      |  |         |    | \\     |\n";  
-    cout<<"|      |  |  O  --  |    |  \\    |\n";  
-    cout<<"|------   |         |    |   \\   |\n";
-    cout<<"|         |  \\___/  |    |    \\  |\n";
-    cout<<"|          ---------     |     \\ |\n";
-    cout<<"|                        |      \\|\n"; 
+    logger.printNoFormatting("\n\n\n\nProgram by PONci\n");
+    logger.printNoFormatting("|------    ---------     |\\      |\n");
+    logger.printNoFormatting("|      |  |         |    | \\     |\n");  
+    logger.printNoFormatting("|      |  |  O  --  |    |  \\    |\n");  
+    logger.printNoFormatting("|------   |         |    |   \\   |\n");
+    logger.printNoFormatting("|         |  \\___/  |    |    \\  |\n");
+    logger.printNoFormatting("|          ---------     |     \\ |\n");
+    logger.printNoFormatting("|                        |      \\|\n"); 
     // getch();
 
     return {};
