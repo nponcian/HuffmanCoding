@@ -60,6 +60,15 @@ src/huffman_src ../message.txt
 
 * output
 ~~~
+Character   Frequency
+"           2
+b           3
+e           4
+p           2
+o           2
+r           1
+!           1
+
 Character               Frequency
 ((b(o"))(((r!)p)e))     15
 
