@@ -44,7 +44,7 @@ std::string ParenthesisString_ChaoticVersion::compress(const std::string& text)
             str1[loop1]=27;
     }
     
-    for(loop1=0,loop3=0; (unsigned)loop1<strlen(str1); loop1++) // counts the number of frequencies of each character (note: this part removes -> ( ) ` -> these characters are used as indicators: () to indicate the code (ung 0 or 1, 0 pag left 1 pag right) then ung ` is ung special character na ginawa ring indicator for... XD
+    for(loop1=0,loop3=0; (unsigned)loop1<text.size(); loop1++) // counts the number of frequencies of each character (note: this part removes -> ( ) ` -> these characters are used as indicators: () to indicate the code (ung 0 or 1, 0 pag left 1 pag right) then ung ` is ung special character na ginawa ring indicator for... XD
     {
         if(str1[loop1]=='`')
             continue;
