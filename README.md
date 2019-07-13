@@ -72,7 +72,7 @@ r           1
 Character               Frequency
 ((b(o"))(((r!)p)e))     15
 
-Character       Code
+Character   Code
 b           00
 o           010
 "           011
