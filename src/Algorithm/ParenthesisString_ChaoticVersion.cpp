@@ -1,3 +1,31 @@
+/*
+This code is not for the faint-hearted! If you have history of medical illnesses, I suggest you to
+close this file NOW URGENTLY!!! Reading this piece of code is too dangerous for your,... eyes!
+
+I wrote this code back in January 27, 2013, 14:14:53 as a challenge to myself during my college years.
+While I was doing an assignment for one of my subjects with the goal of compressing a list of texts
+by using Huffman Coding, I realized that such manual derivation of the Huffman codes are too prone
+to human error. Excitement then exploded within my mind upon thinking about writing a program that
+would verify all my answers. Whoa! That is totally possible! The major challenge to me back then was
+how do I implement the concept of implementing a tree. My innocent 2013 mind unfortunately wasn't able
+to think that doing a struct Node* with details of the left and right would be the way to go, but don't
+underestimate the power of that innocent 2013 mind! As the idea of grouping characters into parenthesis
+such as (ab) suddenly struck me back then and I realize that it is totally DOABLE!!! I enjoyed it.
+I was really proud back then!
+
+But fast forward, 2019, I am now ashamed of this whole garbage code ^_^
+
+This code is totally ugly, unreadable, unmaintainable, cannot be extended easily, undivided functionalities
+and was just put to a single block of code, duplicate codes all over the place, naming conventions are
+so bad, chosen data types are also so bad, signed and unsigned comparisons was all over the place originally,
+and the whole code itself just looks like a big mess!
+
+BUT IT WORKED! With a really really poor quality!
+
+I have tried as much as possible to preserve the authenticity of this whole algorithm in this file
+and thus not made any relevant changes. This would serve as a part of my history as a programmer. :)
+*/
+
 #include <Algorithm/ParenthesisString_ChaoticVersion.hpp>
 
 #include<string.h>
@@ -8,7 +36,7 @@ namespace src::algo
 {
 namespace
 {
-using namespace std;
+
 common::Logger logger("ParenthesisString_ChaoticVersion");
 
 } // namespace
@@ -292,7 +320,7 @@ std::string ParenthesisString_ChaoticVersion::compress(const std::string& text)
             logger.printNoFormatting(code[loop1][loop2]);
     }
     
-    logger.printNoFormatting("\n\n\n\nProgram by PONci\n");
+    logger.printNoFormatting("\n\n\n\nProgram by PONci (circa 2013)\n");
     logger.printNoFormatting("|------    ---------     |\\      |\n");
     logger.printNoFormatting("|      |  |         |    | \\     |\n");  
     logger.printNoFormatting("|      |  |  O  --  |    |  \\    |\n");  
@@ -309,7 +337,8 @@ std::string ParenthesisString_ChaoticVersion::compress(const std::string& text)
 
 /*
 
-// This is the raw version of the whole cpde written on January ‎27, ‎2013, ‏‎14:14:53
+// This is the raw version of the whole code written on January 27, 2013, 14:14:53
+// File is in Operating System\Lec\Huffman Coding
 
 #include<iostream.h>
 #include<string.h>
