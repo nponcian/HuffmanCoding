@@ -18,7 +18,7 @@ class Controller
 public:
     Controller();
 
-    static void handle(const std::string& text);
+    static void handle(const std::string& input);
 
 private:
     static std::vector<std::shared_ptr<algo::IAlgorithm>> createAlgorithms();

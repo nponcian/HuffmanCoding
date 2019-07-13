@@ -5,6 +5,7 @@
 #include <Algorithm/ParenthesisString_ChaoticVersion.hpp>
 #include <Algorithm/IAlgorithm.hpp>
 #include <Common/Logger.hpp>
+#include <File/FileHandler.hpp>
 
 namespace src
 {
@@ -19,13 +20,16 @@ Controller::Controller()
 {
 }
 
-void Controller::handle(const std::string& text)
+void Controller::handle(const std::string& input)
 {
-    if (text == "--help")
+    if (input == "--help")
     {
     }
     else
     {
+        auto text = file::readContentsOfFile(input);
+        if (text.empty()) return;
+
         auto algorithms = createAlgorithms();
         for (const auto& algorithm : algorithms)
         {
