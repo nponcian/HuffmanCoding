@@ -2,6 +2,7 @@
 
 #include <string>
 
+#include <Algorithm/NodeAlgorithm.hpp>
 #include <Algorithm/ParenthesisStringAlgorithm.hpp>
 #include <Algorithm/ParenthesisStringAlgorithm_DirtyVersion.hpp>
 #include <Algorithm/IAlgorithm.hpp>
@@ -43,7 +44,8 @@ std::vector<std::shared_ptr<algo::IAlgorithm>> Controller::createAlgorithms()
 {
     return
         {
-            std::make_unique<algo::ParenthesisStringAlgorithm>(), // coooking...
+            std::make_unique<algo::NodeAlgorithm>(),
+            std::make_unique<algo::ParenthesisStringAlgorithm>(),
             std::make_unique<algo::ParenthesisStringAlgorithm_DirtyVersion>(),
         };
 }
