@@ -1,4 +1,4 @@
-#include <Algorithm/ParenthesisString.hpp>
+#include <Algorithm/ParenthesisStringAlgorithm.hpp>
 
 #include <algorithm>
 #include <map>
@@ -16,7 +16,7 @@ namespace
 using CharacterAndFrequencyMap = std::map<std::string, unsigned>;
 using CharacterAndFrequencyVec = std::vector<std::pair<std::string, unsigned>>;
 
-common::Logger logger("ParenthesisString");
+common::Logger logger("ParenthesisStringAlgorithm");
 
 bool isLetter(const char ch)
 {
@@ -161,11 +161,11 @@ CharacterAndCodeMap buildHuffmanCode(const std::string& huffmanTree)
 
 } // namespace
 
-ParenthesisString::ParenthesisString()
+ParenthesisStringAlgorithm::ParenthesisStringAlgorithm()
 {
 }
 
-CharacterAndCodeMap ParenthesisString::compress(const std::string& text)
+CharacterAndCodeMap ParenthesisStringAlgorithm::compress(const std::string& text)
 {
     CharacterAndFrequencyVec chFreqVec = getCharacterToFrequencyPairs(text);
 

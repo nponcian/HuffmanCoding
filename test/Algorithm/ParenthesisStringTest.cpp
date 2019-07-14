@@ -1,4 +1,4 @@
-#include <Algorithm/ParenthesisString.hpp>
+#include <Algorithm/ParenthesisStringAlgorithm.hpp>
 
 #include <string>
 
@@ -6,18 +6,18 @@
 
 using namespace src::algo;
 
-struct ParenthesisStringTest : public ::testing::Test
+struct ParenthesisStringAlgorithmTest : public ::testing::Test
 {
-    ParenthesisStringTest(){}
-    virtual ~ParenthesisStringTest(){}
+    ParenthesisStringAlgorithmTest(){}
+    virtual ~ParenthesisStringAlgorithmTest(){}
 
     virtual void SetUp(){}
     virtual void TearDown(){}
 
-    ParenthesisString impl_;
+    ParenthesisStringAlgorithm impl_;
 };
 
-TEST_F(ParenthesisStringTest, TreatLowerAndUppercaseCharAsTheSame)
+TEST_F(ParenthesisStringAlgorithmTest, TreatLowerAndUppercaseCharAsTheSame)
 {
     std::string text = "ABabcdCDeFEf";
 

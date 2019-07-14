@@ -27,7 +27,7 @@ I have tried as much as possible to preserve the authenticity of this whole algo
 and thus not made any relevant changes. This would serve as a part of my history as a programmer. :)
 */
 
-#include <Algorithm/ParenthesisString_ChaoticVersion.hpp>
+#include <Algorithm/ParenthesisStringAlgorithm_DirtyVersion.hpp>
 
 #include<string.h>
 
@@ -38,7 +38,7 @@ namespace src::algo
 namespace
 {
 
-common::Logger logger("ParenthesisString_ChaoticVersion");
+common::Logger logger("ParenthesisStringAlgorithm_DirtyVersion");
 
 // Unless you want this garbage code to randomly produce different results given the same input,
 // put the declaration here globally for it to be initialized. As putting it below inside the scope
@@ -48,11 +48,11 @@ common::Logger logger("ParenthesisString_ChaoticVersion");
 
 } // namespace
 
-ParenthesisString_ChaoticVersion::ParenthesisString_ChaoticVersion()
+ParenthesisStringAlgorithm_DirtyVersion::ParenthesisStringAlgorithm_DirtyVersion()
 {
 }
 
-CharacterAndCodeMap ParenthesisString_ChaoticVersion::compress(const std::string& text)
+CharacterAndCodeMap ParenthesisStringAlgorithm_DirtyVersion::compress(const std::string& text)
 {
     logger.print("Executing algorithm without formatting of logger prints...");
     // cout<<"Enter string: ";

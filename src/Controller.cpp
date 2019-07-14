@@ -2,8 +2,8 @@
 
 #include <string>
 
-#include <Algorithm/ParenthesisString.hpp>
-#include <Algorithm/ParenthesisString_ChaoticVersion.hpp>
+#include <Algorithm/ParenthesisStringAlgorithm.hpp>
+#include <Algorithm/ParenthesisStringAlgorithm_DirtyVersion.hpp>
 #include <Algorithm/IAlgorithm.hpp>
 #include <Common/Logger.hpp>
 #include <File/FileHandler.hpp>
@@ -43,8 +43,8 @@ std::vector<std::shared_ptr<algo::IAlgorithm>> Controller::createAlgorithms()
 {
     return
         {
-            std::make_unique<algo::ParenthesisString>(), // coooking...
-            std::make_unique<algo::ParenthesisString_ChaoticVersion>(),
+            std::make_unique<algo::ParenthesisStringAlgorithm>(), // coooking...
+            std::make_unique<algo::ParenthesisStringAlgorithm_DirtyVersion>(),
         };
 }
 
