@@ -40,6 +40,12 @@ namespace
 
 common::Logger logger("ParenthesisString_ChaoticVersion");
 
+// Unless you want this garbage code to randomly produce different results given the same input,
+// put the declaration here globally for it to be initialized. As putting it below inside the scope
+// of compress method puts it into stack uninitialized.
+    int ctr,ctr2,num,loop1,loop2,loop3,templen,pangilan[99],len1[99],len2[99];
+    char tempstr,tempstr2[99],str1[99],str2[99],str3[99][99],code[99][99];
+
 } // namespace
 
 ParenthesisString_ChaoticVersion::ParenthesisString_ChaoticVersion()
@@ -48,9 +54,7 @@ ParenthesisString_ChaoticVersion::ParenthesisString_ChaoticVersion()
 
 std::string ParenthesisString_ChaoticVersion::compress(const std::string& text)
 {
-    int ctr,ctr2,num,loop1,loop2,loop3,templen,pangilan[99],len1[99],len2[99];
-    char tempstr,tempstr2[99],str1[99],str2[99],str3[99][99],code[99][99];
-     
+    logger.print("Executing algorithm without formatting of logger prints...");
     // cout<<"Enter string: ";
     // gets(str1);
     for (unsigned ctr = 0; ctr < text.size() && ctr < 99; ctr++)
@@ -328,9 +332,10 @@ std::string ParenthesisString_ChaoticVersion::compress(const std::string& text)
     logger.printNoFormatting("|------   |         |    |   \\   |\n");
     logger.printNoFormatting("|         |  \\___/  |    |    \\  |\n");
     logger.printNoFormatting("|          ---------     |     \\ |\n");
-    logger.printNoFormatting("|                        |      \\|\n"); 
+    logger.printNoFormatting("|                        |      \\|\n\n"); 
     // getch();
 
+    logger.print("Execution of algorithm finished");
     return {};
 }
 

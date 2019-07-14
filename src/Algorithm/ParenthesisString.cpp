@@ -2,6 +2,7 @@
 
 #include <algorithm>
 #include <map>
+#include <stack>
 #include <set>
 #include <vector>
 
@@ -14,6 +15,7 @@ namespace
 
 using CharacterAndFrequencyMap = std::map<std::string, unsigned>;
 using CharacterAndFrequencyVec = std::vector<std::pair<std::string, unsigned>>;
+using CharacterAndCodeMap = std::map<std::string, std::string>;
 
 common::Logger logger("ParenthesisString");
 
@@ -103,10 +105,10 @@ void combineFirstTwo(CharacterAndFrequencyVec& chFreqVec)
 
     item0.first = "(" + left.first + right.first + ")";
     item0.second = item0.second + item1.second;
-    chFreqVec.erase(chFreqVec.begin() + 1);
+    chFreqVec.erase(chFreqVec.begin() + 1); // Say hi to a lot of moving std::vector memories! :)
 }
 
-void processHuffmanTree(CharacterAndFrequencyVec& chFreqVec)
+void buildHuffmanTree(CharacterAndFrequencyVec& chFreqVec)
 {
     if (chFreqVec.size() <= 1u) return;
 
@@ -114,12 +116,47 @@ void processHuffmanTree(CharacterAndFrequencyVec& chFreqVec)
     printContainerOfPairs(chFreqVec);
 
     combineFirstTwo(chFreqVec);
-    processHuffmanTree(chFreqVec);
+    buildHuffmanTree(chFreqVec);
 }
 
-void processHuffmanCode(const std::string& huffmanTree)
+std::string transformCode(std::stack<char> code)
 {
-    logger.print(huffmanTree);
+    std::string transformed = "";
+    while (!code.empty())
+    {
+        transformed = transformed + code.top();
+        code.pop();
+    }
+    return {transformed.rbegin(), transformed.rend()};
+}
+
+CharacterAndCodeMap buildHuffmanCode(const std::string& huffmanTree)
+{
+    CharacterAndCodeMap chCodeMap;
+
+    std::stack<char> code;
+    for(const auto& ch : huffmanTree)
+    {
+        if (ch == '(')
+        {
+            code.push('0');
+        }
+        else if (ch == ')')
+        {
+            code.pop();
+            if (!code.empty())
+            {
+                code.top() = '1';
+            }
+        }
+        else
+        {
+            chCodeMap[std::string(1, ch)] = transformCode(code);
+            code.top() = '1';
+        }
+    }
+
+    return chCodeMap;
 }
 
 } // namespace
@@ -136,13 +173,13 @@ std::string ParenthesisString::compress(const std::string& text)
     sortSingleCharsWithSameFrequencyByLetter(chFreqVec);
     printContainerOfPairs(chFreqVec);
 
-    processHuffmanTree(chFreqVec);
+    buildHuffmanTree(chFreqVec);
     printContainerOfPairs(chFreqVec);
 
     if (chFreqVec.size() == 1u)
     {
-        processHuffmanCode(chFreqVec.front().first);
-        printContainerOfPairs(chFreqVec);
+        CharacterAndCodeMap chCodeMap = buildHuffmanCode(chFreqVec.front().first);
+        printContainerOfPairs(chCodeMap);
     }
 
     logger.print();
@@ -156,6 +193,7 @@ std::string ParenthesisString::compress(const std::string& text)
     logger.print("|         |  \\___/  |    |    \\  |");
     logger.print("|          ---------     |     \\ |");
     logger.print("|                        |      \\|");
+    logger.print();
 
     return {};
 }
