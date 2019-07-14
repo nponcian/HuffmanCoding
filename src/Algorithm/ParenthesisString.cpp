@@ -17,6 +17,12 @@ using CharacterAndFrequencyVec = std::vector<std::pair<std::string, unsigned>>;
 
 common::Logger logger("ParenthesisString");
 
+bool isLetter(const char ch)
+{
+    return (ch >= 'A' && ch <= 'Z') ||
+            (ch >= 'a' && ch <= 'z');
+}
+
 CharacterAndFrequencyVec getCharacterToFrequencyPairs(const std::string& text)
 {
     CharacterAndFrequencyMap chFreqMap;
@@ -47,6 +53,19 @@ void sortByFrequency(CharacterAndFrequencyVec& chFreqVec)
                     [](const auto& lhs, const auto& rhs)
                     {
                         return lhs.second < rhs.second;
+                    });
+}
+
+void sortSingleCharsWithSameFrequencyByLetter(CharacterAndFrequencyVec& chFreqVec)
+{
+    std::stable_sort(chFreqVec.begin(), chFreqVec.end(),
+                    [](const auto& lhs, const auto& rhs)
+                    {
+                        bool areBothSingleChars = (lhs.first.size() == 1u && rhs.first.size() == 1u);
+                        bool areFrequenciesSame = (lhs.second == rhs.second);
+                        bool shouldLetterBeFirst = (isLetter(lhs.first.front()) && !isLetter(rhs.first.front()));
+
+                        return areBothSingleChars && areFrequenciesSame && shouldLetterBeFirst;
                     });
 }
 
@@ -101,6 +120,8 @@ ParenthesisString::ParenthesisString()
 std::string ParenthesisString::compress(const std::string& text)
 {
     CharacterAndFrequencyVec chFreqVec = getCharacterToFrequencyPairs(text);
+    sortByFrequency(chFreqVec);
+    sortSingleCharsWithSameFrequencyByLetter(chFreqVec);
     printCharacterAndFrequency(chFreqVec);
 
     processHuffmanTree(chFreqVec);
