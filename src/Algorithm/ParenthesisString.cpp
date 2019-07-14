@@ -15,7 +15,6 @@ namespace
 
 using CharacterAndFrequencyMap = std::map<std::string, unsigned>;
 using CharacterAndFrequencyVec = std::vector<std::pair<std::string, unsigned>>;
-using CharacterAndCodeMap = std::map<std::string, std::string>;
 
 common::Logger logger("ParenthesisString");
 
@@ -165,7 +164,7 @@ ParenthesisString::ParenthesisString()
 {
 }
 
-std::string ParenthesisString::compress(const std::string& text)
+CharacterAndCodeMap ParenthesisString::compress(const std::string& text)
 {
     CharacterAndFrequencyVec chFreqVec = getCharacterToFrequencyPairs(text);
 
@@ -176,9 +175,10 @@ std::string ParenthesisString::compress(const std::string& text)
     buildHuffmanTree(chFreqVec);
     printContainerOfPairs(chFreqVec);
 
+    CharacterAndCodeMap chCodeMap;
     if (chFreqVec.size() == 1u)
     {
-        CharacterAndCodeMap chCodeMap = buildHuffmanCode(chFreqVec.front().first);
+        chCodeMap = buildHuffmanCode(chFreqVec.front().first);
         printContainerOfPairs(chCodeMap);
     }
 
@@ -195,7 +195,7 @@ std::string ParenthesisString::compress(const std::string& text)
     logger.print("|                        |      \\|");
     logger.print();
 
-    return {};
+    return chCodeMap;
 }
 
 } // src::algo

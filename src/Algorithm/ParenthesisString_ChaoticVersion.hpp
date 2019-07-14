@@ -13,7 +13,7 @@ class ParenthesisString_ChaoticVersion : public IAlgorithm
 public:
     ParenthesisString_ChaoticVersion();
 
-    virtual std::string compress(const std::string& text) override;
+    virtual CharacterAndCodeMap compress(const std::string& text) override;
 };
 
 } // src::algo

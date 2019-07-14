@@ -52,7 +52,7 @@ ParenthesisString_ChaoticVersion::ParenthesisString_ChaoticVersion()
 {
 }
 
-std::string ParenthesisString_ChaoticVersion::compress(const std::string& text)
+CharacterAndCodeMap ParenthesisString_ChaoticVersion::compress(const std::string& text)
 {
     logger.print("Executing algorithm without formatting of logger prints...");
     // cout<<"Enter string: ";

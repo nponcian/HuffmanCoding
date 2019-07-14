@@ -11,7 +11,7 @@ class ParenthesisString : public IAlgorithm
 public:
     ParenthesisString();
 
-    virtual std::string compress(const std::string& text) override;
+    virtual CharacterAndCodeMap compress(const std::string& text) override;
 };
 
 } // src::algo
