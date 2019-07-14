@@ -35,10 +35,11 @@ CharacterAndFrequencyVec getCharacterToFrequencyPairs(const std::string& text)
 
     std::set<char> processedChars;
     CharacterAndFrequencyVec chFreqVec;
-    for (const auto& ch : text)
+    for (auto ch : text)
     {
-        if (processedChars.count(ch)) continue;
+        ch = std::tolower(ch);
 
+        if (processedChars.count(ch)) continue;
         processedChars.insert(ch);
 
         std::string chStr(1, ch);
