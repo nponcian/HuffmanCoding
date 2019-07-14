@@ -5,13 +5,14 @@ close this file NOW URGENTLY!!! Reading this piece of code is too dangerous for 
 I wrote this code back in January 27, 2013, 14:14:53 as a challenge to myself during my college years.
 While I was doing an assignment for one of my subjects with the goal of compressing a list of texts
 by using Huffman Coding, I realized that such manual derivation of the Huffman codes are too prone
-to human error. Excitement then exploded within my mind upon thinking about writing a program that
-would verify all my answers. Whoa! That is totally possible! The major challenge to me back then was
-how do I implement the concept of implementing a tree. My innocent 2013 mind unfortunately wasn't able
-to think that doing a struct Node* with details of the left and right would be the way to go, but don't
-underestimate the power of that innocent 2013 mind! As the idea of grouping characters into parenthesis
-such as (ab) suddenly struck me back then and I realize that it is totally DOABLE!!! I enjoyed it.
-I was really proud back then!
+to human error. Using an online calculator would be okay, but I then felt it was boring after EXCITEMENT
+exploded within my mind upon thinking about writing a program OF MY OWN that would verify all my answers.
+Whoa! That is totally possible! The major challenge to me back then was how do I implement the concept
+of implementing a tree. My innocent 2013 mind unfortunately wasn't able to think that doing a struct Node*
+with details of the left and right would be the way to go, but never underestimate the power of that
+innocent 2013 mind! As the idea of grouping characters into parenthesis such that in (ab) the "a" would
+be the "left node" while "b" would be the "right node" suddenly struck me back then and I realize that
+it is totally DOABLE!!! I enjoyed it. I was really proud back then!
 
 But fast forward, 2019, I am now ashamed of this whole garbage code ^_^
 

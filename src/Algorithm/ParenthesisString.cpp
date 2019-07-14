@@ -2,6 +2,7 @@
 
 #include <algorithm>
 #include <map>
+#include <set>
 #include <vector>
 
 #include <Common/Logger.hpp>
@@ -16,34 +17,49 @@ using CharacterAndFrequencyVec = std::vector<std::pair<std::string, unsigned>>;
 
 common::Logger logger("ParenthesisString");
 
-CharacterAndFrequencyMap mapCharactersToFrequency(const std::string& text)
+struct Node
+{
+    std::pair<std::string, unsigned> left;
+    std::pair<std::string, unsigned> right;
+};
+
+CharacterAndFrequencyVec getCharacterToFrequencyPairs(const std::string& text)
 {
     CharacterAndFrequencyMap chFreqMap;
-    for (const auto& ch : text)
+    for (auto ch : text)
     {
+        ch = std::tolower(ch);
         chFreqMap[std::string(1, ch)]++;
     }
-    return chFreqMap;
+
+    std::set<char> processedChars;
+    CharacterAndFrequencyVec chFreqVec;
+    for (const auto& ch : text)
+    {
+        if (processedChars.count(ch)) continue;
+
+        processedChars.insert(ch);
+
+        std::string chStr(1, ch);
+        chFreqVec.push_back(std::make_pair(chStr, chFreqMap[chStr]));
+    }
+
+    return chFreqVec;
 }
 
-CharacterAndFrequencyVec sortByMappedTypeValue(const CharacterAndFrequencyMap& chFreqMap)
+void sortByFrequency(CharacterAndFrequencyVec& chFreqVec)
 {
-    CharacterAndFrequencyVec chFreqVec;
-    for (const auto& pair : chFreqMap)
-    {
-        chFreqVec.push_back(std::make_pair(pair.first, pair.second));
-    }
     std::stable_sort(chFreqVec.begin(), chFreqVec.end(),
                     [](const auto& lhs, const auto& rhs)
                     {
                         return lhs.second < rhs.second;
                     });
-    return chFreqVec;
 }
 
 template <typename T>
 void printCharacterAndFrequency(const T& container)
 {
+    logger.print();
     logger.print("Character\t\tFrequency");
     for (const auto& pair : container)
     {
@@ -51,10 +67,35 @@ void printCharacterAndFrequency(const T& container)
     }
 }
 
-void process(const CharacterAndFrequencyMap& chFreqMap)
+void combineFirstTwo(CharacterAndFrequencyVec& chFreqVec)
 {
-    CharacterAndFrequencyVec chFreqVec = sortByMappedTypeValue(chFreqMap);
+    if (chFreqVec.size() < 2u) return;
+
+    auto& item0 = chFreqVec.at(0);
+    auto& item1 = chFreqVec.at(1);
+
+    auto [left, right] = (item0.second <= item1.second) ?
+                            Node{item0, item1} :
+                            Node{item1, item0};
+
+    item0.first = "(" + left.first + right.first + ")";
+    item0.second = item0.second + item1.second;
+    chFreqVec.erase(chFreqVec.begin() + 1);
+}
+
+void processHuffmanTree(CharacterAndFrequencyVec& chFreqVec)
+{
+    if (chFreqVec.size() <= 1u) return;
+
+    sortByFrequency(chFreqVec);
     printCharacterAndFrequency(chFreqVec);
+
+    combineFirstTwo(chFreqVec);
+    processHuffmanTree(chFreqVec);
+}
+
+void processHuffmanCode(const CharacterAndFrequencyVec&)
+{
 }
 
 } // namespace
@@ -65,11 +106,13 @@ ParenthesisString::ParenthesisString()
 
 std::string ParenthesisString::compress(const std::string& text)
 {
-    CharacterAndFrequencyMap chFreqMap = mapCharactersToFrequency(text);
-    printCharacterAndFrequency(chFreqMap);
+    CharacterAndFrequencyVec chFreqVec = getCharacterToFrequencyPairs(text);
+    printCharacterAndFrequency(chFreqVec);
 
-    process(chFreqMap);
-
+    processHuffmanTree(chFreqVec);
+    printCharacterAndFrequency(chFreqVec);
+    processHuffmanCode(chFreqVec);
+    printCharacterAndFrequency(chFreqVec);
 
     logger.print();
     logger.print();

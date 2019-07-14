@@ -43,7 +43,7 @@ std::vector<std::shared_ptr<algo::IAlgorithm>> Controller::createAlgorithms()
 {
     return
         {
-            // std::make_unique<algo::ParenthesisString>(), // coooking...
+            std::make_unique<algo::ParenthesisString>(), // coooking...
             std::make_unique<algo::ParenthesisString_ChaoticVersion>(),
         };
 }
