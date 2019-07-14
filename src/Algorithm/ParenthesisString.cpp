@@ -17,12 +17,6 @@ using CharacterAndFrequencyVec = std::vector<std::pair<std::string, unsigned>>;
 
 common::Logger logger("ParenthesisString");
 
-struct Node
-{
-    std::pair<std::string, unsigned> left;
-    std::pair<std::string, unsigned> right;
-};
-
 CharacterAndFrequencyVec getCharacterToFrequencyPairs(const std::string& text)
 {
     CharacterAndFrequencyMap chFreqMap;
@@ -75,8 +69,8 @@ void combineFirstTwo(CharacterAndFrequencyVec& chFreqVec)
     auto& item1 = chFreqVec.at(1);
 
     auto [left, right] = (item0.second <= item1.second) ?
-                            Node{item0, item1} :
-                            Node{item1, item0};
+                            std::make_pair(item0, item1) :
+                            std::make_pair(item1, item0);
 
     item0.first = "(" + left.first + right.first + ")";
     item0.second = item0.second + item1.second;
