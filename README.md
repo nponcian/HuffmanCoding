@@ -45,12 +45,16 @@ src/huffman_src ../message.txt
 
 ## TESTING
 ~~~
+cd HuffmanCoding/build
+cmake ..
+make
+test/huffman_test
 ~~~
 
 ## EXAMPLE
 * ../message.txt
 ~~~
-"beepboopbeer!"
+shesells seashells bythe seashore
 ~~~
 
 * Compress the message
@@ -60,24 +64,32 @@ src/huffman_src ../message.txt
 
 * output
 ~~~
-Character   Frequency
-"           2
-b           3
-e           4
-p           2
-o           2
-r           1
-!           1
-
-Character               Frequency
-((b(o"))(((r!)p)e))     15
-
-Character   Code
-b           00
-o           010
-"           011
-r           1000
-!           1001
-p           101
-e           11
+[ParenthesisString] Character                    Frequency / Code
+[ParenthesisString] b                            1
+[ParenthesisString] y                            1
+[ParenthesisString] t                            1
+[ParenthesisString] o                            1
+[ParenthesisString] r                            1
+[ParenthesisString] a                            2
+[ParenthesisString]                              3
+[ParenthesisString] h                            4
+[ParenthesisString] l                            4
+[ParenthesisString] e                            7
+[ParenthesisString] s                            8
+[ParenthesisString]
+[ParenthesisString] Character                    Frequency / Code
+[ParenthesisString] ((e(((by)a)h))(s(l((r(to)) )))) 33
+[ParenthesisString]
+[ParenthesisString] Character                    Frequency / Code
+[ParenthesisString]                              1111
+[ParenthesisString] a                            0101
+[ParenthesisString] b                            01000
+[ParenthesisString] e                            00
+[ParenthesisString] h                            011
+[ParenthesisString] l                            110
+[ParenthesisString] o                            111011
+[ParenthesisString] r                            11100
+[ParenthesisString] s                            10
+[ParenthesisString] t                            111010
+[ParenthesisString] y                            01001
 ~~~
