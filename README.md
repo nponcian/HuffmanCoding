@@ -62,7 +62,7 @@ shesells seashells bythe seashore
 src/huffman_src ../message.txt
 ~~~
 
-* output
+* Output
 ~~~
 [ParenthesisString] Character                    Frequency / Code
 [ParenthesisString] b                            1
