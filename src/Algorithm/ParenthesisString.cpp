@@ -70,13 +70,23 @@ void sortSingleCharsWithSameFrequencyByLetter(CharacterAndFrequencyVec& chFreqVe
 }
 
 template <typename T>
-void printCharacterAndFrequency(const T& container)
+void printContainerOfPairs(const T& container)
 {
+    static const unsigned FREQUENCY_OR_CODE_POSITION = 29u;
+
     logger.print();
-    logger.print("Character\t\tFrequency");
+    logger.print("Character                    Frequency / Code");
     for (const auto& pair : container)
     {
-        logger.print(pair.first, "\t\t\t", pair.second);
+        std::string spaces = " ";
+        unsigned stringSize = static_cast<unsigned>(pair.first.size());
+        unsigned limit = FREQUENCY_OR_CODE_POSITION - std::min(FREQUENCY_OR_CODE_POSITION, stringSize);
+        for (unsigned ctr = 1; ctr < limit; ctr++)
+        {
+            spaces = spaces + " ";
+        }
+
+        logger.print(pair.first, spaces, pair.second);
     }
 }
 
@@ -101,14 +111,15 @@ void processHuffmanTree(CharacterAndFrequencyVec& chFreqVec)
     if (chFreqVec.size() <= 1u) return;
 
     sortByFrequency(chFreqVec);
-    printCharacterAndFrequency(chFreqVec);
+    printContainerOfPairs(chFreqVec);
 
     combineFirstTwo(chFreqVec);
     processHuffmanTree(chFreqVec);
 }
 
-void processHuffmanCode(const CharacterAndFrequencyVec&)
+void processHuffmanCode(const std::string& huffmanTree)
 {
+    logger.print(huffmanTree);
 }
 
 } // namespace
@@ -120,14 +131,19 @@ ParenthesisString::ParenthesisString()
 std::string ParenthesisString::compress(const std::string& text)
 {
     CharacterAndFrequencyVec chFreqVec = getCharacterToFrequencyPairs(text);
+
     sortByFrequency(chFreqVec);
     sortSingleCharsWithSameFrequencyByLetter(chFreqVec);
-    printCharacterAndFrequency(chFreqVec);
+    printContainerOfPairs(chFreqVec);
 
     processHuffmanTree(chFreqVec);
-    printCharacterAndFrequency(chFreqVec);
-    processHuffmanCode(chFreqVec);
-    printCharacterAndFrequency(chFreqVec);
+    printContainerOfPairs(chFreqVec);
+
+    if (chFreqVec.size() == 1u)
+    {
+        processHuffmanCode(chFreqVec.front().first);
+        printContainerOfPairs(chFreqVec);
+    }
 
     logger.print();
     logger.print();
